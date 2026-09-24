@@ -47,9 +47,15 @@ export const useOnlineGame = () => {
   const seat = useRef<{ code: string; name: string } | null>(null);
   const myId = useRef<number | null>(null);
 
+  // Messages sent while the socket is still opening go out once it opens.
+  const pending = useRef<ClientMessage[]>([]);
+
   const send = useCallback((message: ClientMessage) => {
-    if (socket.current?.readyState === WebSocket.OPEN) {
-      socket.current.send(JSON.stringify(message));
+    const ws = socket.current;
+    if (ws?.readyState === WebSocket.OPEN) {
+      ws.send(JSON.stringify(message));
+    } else if (ws?.readyState === WebSocket.CONNECTING) {
+      pending.current.push(message);
     } else {
       setError("Not connected to the server.");
     }
@@ -162,9 +168,15 @@ export const useOnlineGame = () => {
     ws.onopen = () => {
       setConnection("open");
       setError("");
-      if (seat.current) {
+      const queued = pending.current;
+      pending.current = [];
+      // After a reconnect, take our seat back first. A queued create/join
+      // replaces it anyway, so skip the rejoin then.
+      const joining = queued.some((m) => m.type === "create" || m.type === "join");
+      if (seat.current && !joining) {
         ws.send(JSON.stringify({ type: "join", ...seat.current }));
       }
+      queued.forEach((m) => ws.send(JSON.stringify(m)));
     };
     ws.onmessage = (event) => {
       queue.current.push(JSON.parse(String(event.data)));
