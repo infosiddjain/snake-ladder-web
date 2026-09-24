@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { playEffect } from "./audio";
 import { WS_URL } from "./config";
 import {
   ClientMessage,
@@ -94,6 +95,7 @@ export const useOnlineGame = () => {
       }
       animating.current = true;
       setPhase("rolling");
+      playEffect("dice");
       diceTimer.current = setInterval(() => setDiceFace(rollDie()), DICE_FRAME_MS);
 
       const { steps, jumpTo } = getMovePath(player.position, roll);
@@ -108,13 +110,17 @@ export const useOnlineGame = () => {
         setMoveNote(`${player.name} rolled ${roll}…`);
       }, delay);
       steps.forEach((square) => {
-        schedule(() => moveToken(id, square), delay);
+        schedule(() => {
+          playEffect("step");
+          moveToken(id, square);
+        }, delay);
         delay += STEP_MS;
       });
       if (jumpTo !== null) {
         delay += SLIDE_PAUSE_MS;
         const climb = jumpTo > player.position + roll;
         schedule(() => {
+          playEffect(climb ? "step" : "snake");
           setMoveNote(climb ? "Ladder!" : "Snake bite!");
           moveToken(id, jumpTo);
         }, delay);

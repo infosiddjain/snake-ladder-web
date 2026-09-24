@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Playfair_Display } from "next/font/google";
 import Link from "next/link";
+import AudioController from "@/components/AudioController";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,14 +28,26 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Link href="/" className="brand">
             Snakes <span>&amp;</span> Ladders
           </Link>
-          <nav>
+          <nav className="site-nav">
+            <AudioController />
+            <Link href="/settings" className="icon-btn" aria-label="Settings" title="Settings">
+              ⚙
+            </Link>
             <Link href="/play" className="btn btn-primary btn-sm">
               Play Online
             </Link>
           </nav>
         </header>
         <main className="flex-1 flex flex-col">{children}</main>
-        <footer className="site-footer">Snakes &amp; Ladders · Royal Edition</footer>
+        <footer className="site-footer">
+          <nav className="footer-links">
+            <Link href="/about">About Us</Link>
+            <Link href="/privacy">Privacy</Link>
+            <Link href="/contact">Contact</Link>
+            <Link href="/settings">Settings</Link>
+          </nav>
+          <p>Snakes &amp; Ladders · Royal Edition</p>
+        </footer>
       </body>
     </html>
   );
