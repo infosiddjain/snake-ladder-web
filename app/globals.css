@@ -204,7 +204,8 @@ h3,
   cursor: pointer;
   align-self: center;
 }
-input {
+input,
+textarea {
   width: 100%;
   padding: 10px 14px;
   border-radius: 12px;
@@ -213,7 +214,12 @@ input {
   color: var(--text);
   font-size: 1rem;
 }
-input:focus {
+textarea {
+  resize: vertical;
+  font: inherit;
+}
+input:focus,
+textarea:focus {
   outline: 2px solid var(--gold);
   outline-offset: 1px;
 }
@@ -598,4 +604,59 @@ input:focus {
   display: grid;
   gap: 8px;
   line-height: 1.5;
+}
+
+/* Contact form */
+.contact-form .field {
+  color: var(--text);
+  font-weight: 600;
+}
+.contact-form .field input,
+.contact-form .field textarea {
+  font-weight: 400;
+}
+.contact-form [aria-invalid="true"] {
+  border-color: var(--error);
+}
+.field-error {
+  color: var(--error);
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 50;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--hairline);
+  background: var(--surface-light);
+  color: var(--text);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+  animation: toast 4.5s ease forwards;
+}
+.toast[data-status="success"] {
+  border-color: var(--ok);
+}
+.toast[data-status="error"] {
+  border-color: var(--error);
+}
+@keyframes toast {
+  0% { opacity: 0; transform: translate(-50%, 16px); }
+  8%, 85% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, 16px); visibility: hidden; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: toast-fade 4.5s linear forwards;
+    transform: translateX(-50%);
+  }
+  @keyframes toast-fade {
+    0%, 90% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+  }
 }

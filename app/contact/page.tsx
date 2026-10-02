@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ContactForm from "@/components/ContactForm";
 import {
   APP_NAME,
   APP_VERSION,
@@ -21,6 +22,7 @@ export default function ContactPage() {
           as we can.
         </p>
       </div>
+      <ContactForm />
       <div className="card">
         <a className="contact-row" href={emailUrl(`${APP_NAME} support`)}>
           <span className="setting-label">Email</span>
