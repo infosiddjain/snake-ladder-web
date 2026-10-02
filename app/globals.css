@@ -43,16 +43,34 @@ h3,
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   padding: 14px 20px;
   border-bottom: 1px solid var(--hairline);
 }
 .brand {
   font-size: 1.3rem;
   font-weight: 700;
+  white-space: nowrap;
   letter-spacing: 0.04em;
 }
-.brand span {
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand .amp {
   color: var(--gold);
+}
+.brand-logo {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.35));
+}
+.hero-logo {
+  width: clamp(104px, 28vw, 140px);
+  height: auto;
+  filter: drop-shadow(0 0 22px rgba(212, 175, 55, 0.35));
 }
 .site-footer {
   text-align: center;
@@ -143,6 +161,8 @@ h3,
 /* Status pill */
 .status-pill {
   display: inline-flex;
+  max-width: 100%;
+  text-align: left;
   align-items: center;
   gap: 8px;
   padding: 6px 14px;
@@ -152,6 +172,7 @@ h3,
   font-size: 0.85rem;
 }
 .status-dot {
+  flex-shrink: 0;
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -175,6 +196,7 @@ h3,
   font-family: var(--font-serif), Georgia, serif;
   font-weight: 700;
   letter-spacing: 0.05em;
+  white-space: nowrap;
   cursor: pointer;
   transition: transform 0.1s, opacity 0.1s;
 }
@@ -286,7 +308,7 @@ textarea:focus {
   color: var(--error);
 }
 .room-code {
-  font-size: 2.6rem;
+  font-size: clamp(1.8rem, 9vw, 2.6rem);
   font-weight: 800;
   letter-spacing: 0.3em;
 }
@@ -330,6 +352,8 @@ textarea:focus {
 }
 .chip {
   display: flex;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
@@ -366,6 +390,8 @@ textarea:focus {
 /* Board */
 .board-frame {
   width: 100%;
+  /* Keep the board, players and dice on screen together on short (landscape) screens. */
+  max-width: max(280px, calc(100dvh - 300px));
   padding: 4px;
   border-radius: 14px;
   border: 1px solid var(--gold-light);
@@ -457,11 +483,14 @@ textarea:focus {
   align-items: center;
   justify-content: center;
   gap: 16px;
+  padding: 24px 16px;
+  text-align: center;
   z-index: 10;
 }
 .overlay h2 {
-  font-size: 2.2rem;
+  font-size: clamp(1.6rem, 7vw, 2.2rem);
   font-weight: 800;
+  overflow-wrap: anywhere;
 }
 .trophy {
   font-size: 4.5rem;
@@ -498,11 +527,12 @@ textarea:focus {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px 24px;
-  margin-bottom: 10px;
+  gap: 0 16px;
+  margin-bottom: 6px;
 }
 .footer-links a {
   color: var(--gold);
+  padding: 10px 4px;
 }
 .footer-credit {
   color: var(--gold);
@@ -514,7 +544,7 @@ textarea:focus {
   margin-top: 12px;
 }
 .social-links a {
-  padding: 6px 14px;
+  padding: 8px 14px;
   border: 1px solid var(--hairline);
   border-radius: 999px;
   color: var(--gold);
@@ -523,12 +553,65 @@ textarea:focus {
 .social-links a:hover {
   border-color: var(--gold);
 }
-@media (max-width: 420px) {
+@media (max-width: 520px) {
   .brand {
     font-size: 1.05rem;
+    gap: 8px;
+  }
+  .brand-logo {
+    width: 30px;
+    height: 30px;
   }
   .site-header {
     padding: 12px 16px;
+  }
+  .site-nav {
+    gap: 8px;
+  }
+  .icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+  .site-nav .btn-sm {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+  .hero {
+    padding: 48px 0 32px;
+  }
+  .lead {
+    font-size: 1rem;
+  }
+  .section {
+    padding: 28px 0;
+  }
+  .panel {
+    padding: 24px 16px;
+  }
+  .panel h1 {
+    font-size: 1.75rem;
+  }
+  .code-input {
+    letter-spacing: 0.25em;
+  }
+}
+/* Phones: the gear is also in the footer, so drop it from the header. */
+@media (max-width: 480px) {
+  .site-nav a.icon-btn {
+    display: none;
+  }
+}
+@media (max-width: 400px) {
+  .brand {
+    font-size: 0.95rem;
+  }
+}
+/* Very narrow phones: brand on its own row, controls below. */
+@media (max-width: 369px) {
+  .site-header {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 8px;
   }
 }
 
@@ -550,7 +633,14 @@ textarea:focus {
 }
 .contact-row {
   justify-content: space-between;
-  flex-wrap: wrap;
+}
+.contact-row .setting-label {
+  flex-shrink: 0;
+}
+.contact-value {
+  min-width: 0;
+  text-align: right;
+  overflow-wrap: anywhere;
 }
 .setting-label {
   display: block;
@@ -658,5 +748,44 @@ textarea:focus {
   @keyframes toast-fade {
     0%, 90% { opacity: 1; }
     100% { opacity: 0; visibility: hidden; }
+  }
+}
+.card p.setting-label {
+  color: var(--text);
+}
+@media (max-width: 480px) {
+  .contact-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+  .contact-value {
+    text-align: left;
+  }
+}
+/* Landscape screens (phones, tablets, laptops): board on the left, players and dice beside it. */
+@media (orientation: landscape) and (max-height: 820px) {
+  .game {
+    max-width: none;
+    display: grid;
+    grid-template-columns: auto minmax(200px, 320px);
+    justify-content: center;
+    align-content: center;
+    column-gap: 24px;
+    row-gap: 10px;
+    justify-items: center;
+  }
+  .game > * {
+    grid-column: 2;
+  }
+  .game > .board-frame {
+    grid-column: 1;
+    grid-row: 1 / span 6;
+    align-self: center;
+    width: clamp(220px, calc(100dvh - 110px), 560px);
+    max-width: none;
+  }
+  .game .message {
+    min-height: 0;
   }
 }

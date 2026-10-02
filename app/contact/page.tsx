@@ -26,11 +26,11 @@ export default function ContactPage() {
       <div className="card">
         <a className="contact-row" href={emailUrl(`${APP_NAME} support`)}>
           <span className="setting-label">Email</span>
-          <span className="muted">{SUPPORT_EMAIL}</span>
+          <span className="muted contact-value">{SUPPORT_EMAIL}</span>
         </a>
         <a className="contact-row" href={WEBSITE_URL} target="_blank" rel="noopener noreferrer">
           <span className="setting-label">Portfolio</span>
-          <span className="muted">{WEBSITE_URL.replace(/^https?:\/\//, "")}</span>
+          <span className="muted contact-value">{WEBSITE_URL.replace(/^https?:\/\//, "")}</span>
         </a>
         {SOCIAL_LINKS.map((link) => (
           <a
@@ -41,7 +41,7 @@ export default function ContactPage() {
             rel="noopener noreferrer"
           >
             <span className="setting-label">{link.label}</span>
-            <span className="muted">{link.url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}</span>
+            <span className="muted contact-value">{link.url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}</span>
           </a>
         ))}
       </div>

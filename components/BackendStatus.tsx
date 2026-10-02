@@ -21,13 +21,15 @@ export default function BackendStatus() {
   return (
     <div className="status-pill" data-status={status}>
       <span className="status-dot" />
-      {status === "checking" && "Checking game server…"}
-      {status === "online" && (
-        <>
-          Game server online — it says <q>{reply}</q>
-        </>
-      )}
-      {status === "offline" && `Game server offline (${API_URL})`}
+      <span>
+        {status === "checking" && "Checking game server…"}
+        {status === "online" && (
+          <>
+            Game server online — it says <q>{reply}</q>
+          </>
+        )}
+        {status === "offline" && `Game server offline (${API_URL})`}
+      </span>
     </div>
   );
 }

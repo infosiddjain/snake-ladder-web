@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Playfair_Display } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 import AudioController from "@/components/AudioController";
 import { DEVELOPER_NAME, WEBSITE_URL } from "@/lib/site";
@@ -21,13 +22,20 @@ export const metadata: Metadata = {
     "Play Snakes & Ladders live with friends. Share a room code and play together from the app or the web.",
 };
 
+export const viewport: Viewport = {
+  themeColor: "#0a0a14",
+};
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${geistSans.variable} ${playfair.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <header className="site-header">
           <Link href="/" className="brand">
-            Snakes <span>&amp;</span> Ladders
+            <Image src="/logo.svg" alt="" width={36} height={36} className="brand-logo" priority />
+            <span>
+              Snakes <span className="amp">&amp;</span> Ladders
+            </span>
           </Link>
           <nav className="site-nav">
             <AudioController />

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import BackendStatus from "@/components/BackendStatus";
 
@@ -18,6 +19,7 @@ export default function Home() {
   return (
     <div className="page">
       <section className="hero">
+        <Image src="/logo.svg" alt="Snakes & Ladders logo" width={140} height={140} className="hero-logo" priority />
         <p className="eyebrow">Royal Edition</p>
         <h1>Snakes &amp; Ladders, live with friends</h1>
         <p className="lead">
