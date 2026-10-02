@@ -1,11 +1,20 @@
 // Mirrors SnakeGame/src/constants/app.ts and legal.ts — keep them in sync.
-// TODO: replace the placeholder contact details before publishing.
 export const APP_NAME = "Snakes & Ladders";
 export const APP_TAGLINE = "Royal Edition";
 export const APP_VERSION = "1.0.0";
-export const DEVELOPER_NAME = "Your Studio Name";
-export const SUPPORT_EMAIL = "support@yourdomain.com";
-export const WEBSITE_URL = "https://yourdomain.com";
+export const DEVELOPER_NAME = "Siddharth Jain";
+export const DEVELOPER_ROLE = "Full-stack & Mobile Developer";
+export const DEVELOPER_BIO =
+  "I’m a full-stack developer with 5+ years of experience building web and mobile apps with React, React Native and Node.js. I designed and built this game end to end — the React Native app, the Next.js website and the real-time game server that lets them play together.";
+export const SUPPORT_EMAIL = "infosiddjain@gmail.com";
+export const WEBSITE_URL = "https://portfolio-five-brown-mafnjkhjpf.vercel.app";
+export const SOCIAL_LINKS = [
+  { label: "GitHub", url: "https://github.com/infosiddjain" },
+  { label: "LinkedIn", url: "https://www.linkedin.com/in/infosiddjain/" },
+  { label: "X (Twitter)", url: "https://x.com/infosiddjain" },
+  { label: "Instagram", url: "https://www.instagram.com/infosiddjain/" },
+  { label: "Facebook", url: "https://www.facebook.com/infosiddjain" },
+];
 export const PRIVACY_EFFECTIVE_DATE = "24 September 2026";
 
 export const emailUrl = (subject: string) =>

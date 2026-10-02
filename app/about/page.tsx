@@ -1,5 +1,14 @@
 import type { Metadata } from "next";
-import { APP_NAME, APP_VERSION, DEVELOPER_NAME, HOW_TO_PLAY } from "@/lib/site";
+import {
+  APP_NAME,
+  APP_VERSION,
+  DEVELOPER_BIO,
+  DEVELOPER_NAME,
+  DEVELOPER_ROLE,
+  HOW_TO_PLAY,
+  SOCIAL_LINKS,
+  WEBSITE_URL,
+} from "@/lib/site";
 
 export const metadata: Metadata = { title: "About Us — Snakes & Ladders" };
 
@@ -23,6 +32,22 @@ export default function AboutPage() {
             <li key={rule}>{rule}</li>
           ))}
         </ol>
+      </div>
+      <div className="card">
+        <h3>About the Developer</h3>
+        <p className="setting-label">{DEVELOPER_NAME}</p>
+        <p className="muted small">{DEVELOPER_ROLE}</p>
+        <p>{DEVELOPER_BIO}</p>
+        <div className="social-links">
+          <a href={WEBSITE_URL} target="_blank" rel="noopener noreferrer">
+            Portfolio
+          </a>
+          {SOCIAL_LINKS.map((link) => (
+            <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer">
+              {link.label}
+            </a>
+          ))}
+        </div>
       </div>
       <div className="card">
         <h3>Details</h3>

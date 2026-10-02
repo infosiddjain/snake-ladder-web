@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { APP_NAME, APP_VERSION, emailUrl, SUPPORT_EMAIL, WEBSITE_URL } from "@/lib/site";
+import {
+  APP_NAME,
+  APP_VERSION,
+  emailUrl,
+  SOCIAL_LINKS,
+  SUPPORT_EMAIL,
+  WEBSITE_URL,
+} from "@/lib/site";
 
 export const metadata: Metadata = { title: "Contact Us — Snakes & Ladders" };
 
@@ -19,10 +26,22 @@ export default function ContactPage() {
           <span className="setting-label">Email</span>
           <span className="muted">{SUPPORT_EMAIL}</span>
         </a>
-        <a className="contact-row" href={WEBSITE_URL}>
-          <span className="setting-label">Website</span>
+        <a className="contact-row" href={WEBSITE_URL} target="_blank" rel="noopener noreferrer">
+          <span className="setting-label">Portfolio</span>
           <span className="muted">{WEBSITE_URL.replace(/^https?:\/\//, "")}</span>
         </a>
+        {SOCIAL_LINKS.map((link) => (
+          <a
+            key={link.label}
+            className="contact-row"
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="setting-label">{link.label}</span>
+            <span className="muted">{link.url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}</span>
+          </a>
+        ))}
       </div>
       <a className="btn btn-primary self-center" href={emailUrl(`${APP_NAME} feedback (v${APP_VERSION})`)}>
         Send Feedback

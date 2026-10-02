@@ -498,6 +498,25 @@ input:focus {
 .footer-links a {
   color: var(--gold);
 }
+.footer-credit {
+  color: var(--gold);
+}
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.social-links a {
+  padding: 6px 14px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  color: var(--gold);
+  font-size: 0.85rem;
+}
+.social-links a:hover {
+  border-color: var(--gold);
+}
 @media (max-width: 420px) {
   .brand {
     font-size: 1.05rem;
