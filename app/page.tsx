@@ -19,8 +19,8 @@ export default function Home() {
   return (
     <div className="page">
       <section className="hero">
-        <Image src="/logo.svg" alt="Snakes & Ladders logo" width={140} height={140} className="hero-logo" priority />
-        <p className="eyebrow">Royal Edition</p>
+        <Image src="/logo.svg" alt="Snakepad logo" width={140} height={140} className="hero-logo" priority />
+        <p className="eyebrow">Snakepad</p>
         <h1>Snakes &amp; Ladders, live with friends</h1>
         <p className="lead">
           Start a game, share the room code, and play together in real time — on the phone app or in

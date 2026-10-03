@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PRIVACY_EFFECTIVE_DATE, PRIVACY_SECTIONS } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Privacy Policy — Snakes & Ladders" };
+export const metadata: Metadata = { title: "Privacy Policy — Snakepad" };
 
 export default function PrivacyPage() {
   return (

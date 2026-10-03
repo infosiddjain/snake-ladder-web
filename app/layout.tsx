@@ -17,7 +17,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Snakes & Ladders — Royal Edition",
+  title: "Snakepad — Snakes & Ladders",
   description:
     "Play Snakes & Ladders live with friends. Share a room code and play together from the app or the web.",
 };
@@ -34,7 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Link href="/" className="brand">
             <Image src="/logo.svg" alt="" width={36} height={36} className="brand-logo" priority />
             <span>
-              Snakes <span className="amp">&amp;</span> Ladders
+              Snakepad
             </span>
           </Link>
           <nav className="site-nav">
@@ -55,7 +55,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <Link href="/contact">Contact</Link>
             <Link href="/settings">Settings</Link>
           </nav>
-          <p>Snakes &amp; Ladders · Royal Edition</p>
+          <p>Snakepad · Snakes &amp; Ladders</p>
           <p>
             Made by{" "}
             <a href={WEBSITE_URL} target="_blank" rel="noopener noreferrer" className="footer-credit">

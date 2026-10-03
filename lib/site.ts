@@ -1,6 +1,6 @@
 // Mirrors SnakeGame/src/constants/app.ts and legal.ts — keep them in sync.
-export const APP_NAME = "Snakes & Ladders";
-export const APP_TAGLINE = "Royal Edition";
+export const APP_NAME = "Snakepad";
+export const APP_TAGLINE = "Snakes & Ladders";
 export const APP_VERSION = "1.0.0";
 export const DEVELOPER_NAME = "Siddharth Jain";
 export const DEVELOPER_ROLE = "Full-stack & Mobile Developer";
@@ -32,7 +32,7 @@ export const PRIVACY_SECTIONS = [
   {
     title: "Overview",
     body: [
-      `${DEVELOPER_NAME} built Snakes & Ladders as a game you can play offline, or online with friends. This policy covers the app and this website, and explains what information they handle and how.`,
+      `${DEVELOPER_NAME} built ${APP_NAME} as a game you can play offline, or online with friends. This policy covers the app and this website, and explains what information they handle and how.`,
     ],
   },
   {

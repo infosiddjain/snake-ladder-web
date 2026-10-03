@@ -9,7 +9,7 @@ import {
   WEBSITE_URL,
 } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Contact Us — Snakes & Ladders" };
+export const metadata: Metadata = { title: "Contact Us — Snakepad" };
 
 export default function ContactPage() {
   return (
