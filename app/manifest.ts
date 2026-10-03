@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: `${APP_NAME} — ${APP_TAGLINE}`,
     short_name: APP_NAME,
-    description: "Play Snakes & Ladders live with friends, from the app or the web.",
+    description: `${APP_NAME}: play Snakes & Ladders live with friends, from the app or the web.`,
     start_url: "/",
     display: "standalone",
     background_color: "#0a0a14",

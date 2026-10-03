@@ -3,7 +3,7 @@ import { Geist, Playfair_Display } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import AudioController from "@/components/AudioController";
-import { DEVELOPER_NAME, WEBSITE_URL } from "@/lib/site";
+import { APP_NAME, APP_TAGLINE, DEVELOPER_NAME, WEBSITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,10 +16,15 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
 });
 
+const DESCRIPTION = `${APP_NAME}: play Snakes & Ladders live with friends. Share a room code and play together from the app or the web.`;
+
 export const metadata: Metadata = {
-  title: "Snakepad — Snakes & Ladders",
-  description:
-    "Play Snakes & Ladders live with friends. Share a room code and play together from the app or the web.",
+  title: `${APP_NAME} — ${APP_TAGLINE}`,
+  description: DESCRIPTION,
+  applicationName: APP_NAME,
+  appleWebApp: { title: APP_NAME },
+  openGraph: { siteName: APP_NAME, title: `${APP_NAME} — ${APP_TAGLINE}`, description: DESCRIPTION, type: "website" },
+  twitter: { card: "summary", title: `${APP_NAME} — ${APP_TAGLINE}`, description: DESCRIPTION },
 };
 
 export const viewport: Viewport = {
@@ -33,9 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <header className="site-header">
           <Link href="/" className="brand">
             <Image src="/logo.svg" alt="" width={36} height={36} className="brand-logo" priority />
-            <span>
-              Snakepad
-            </span>
+            <span>{APP_NAME}</span>
           </Link>
           <nav className="site-nav">
             <AudioController />
@@ -55,7 +58,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <Link href="/contact">Contact</Link>
             <Link href="/settings">Settings</Link>
           </nav>
-          <p>Snakepad · Snakes &amp; Ladders</p>
+          <p>{APP_NAME} · {APP_TAGLINE}</p>
           <p>
             Made by{" "}
             <a href={WEBSITE_URL} target="_blank" rel="noopener noreferrer" className="footer-credit">

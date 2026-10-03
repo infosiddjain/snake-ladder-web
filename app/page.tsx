@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import BackendStatus from "@/components/BackendStatus";
+import { APP_NAME, APP_TAGLINE } from "@/lib/site";
 
 const STEPS = [
   { title: "Create a room", text: "Enter your name and tap Create Game to get a six-letter room code." },
@@ -19,12 +20,12 @@ export default function Home() {
   return (
     <div className="page">
       <section className="hero">
-        <Image src="/logo.svg" alt="Snakepad logo" width={140} height={140} className="hero-logo" priority />
-        <p className="eyebrow">Snakepad</p>
-        <h1>Snakes &amp; Ladders, live with friends</h1>
+        <Image src="/logo.svg" alt={`${APP_NAME} logo`} width={140} height={140} className="hero-logo" priority />
+        <p className="eyebrow">{APP_TAGLINE}</p>
+        <h1>{APP_NAME}</h1>
         <p className="lead">
-          Start a game, share the room code, and play together in real time — on the phone app or in
-          your browser.
+          Snakes &amp; Ladders, live with friends. Start a game, share the room code, and play
+          together in real time — on the {APP_NAME} app or in your browser.
         </p>
         <div className="hero-actions">
           <Link href="/play" className="btn btn-primary">
