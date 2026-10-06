@@ -10,7 +10,12 @@ import {
   WEBSITE_URL,
 } from "@/lib/site";
 
-export const metadata: Metadata = { title: "About Us — Snakepad" };
+export const metadata: Metadata = {
+  title: "About Us",
+  description:
+    "The story behind Snakepad, a Snakes & Ladders game for phone and browser, how to play, and the developer who built it.",
+  alternates: { canonical: "/about" },
+};
 
 export default function AboutPage() {
   return (

@@ -8,6 +8,10 @@ export const DEVELOPER_BIO =
   "I’m a full-stack developer with 5+ years of experience building web and mobile apps with React, React Native and Node.js. I designed and built this game end to end — the React Native app, the Next.js website and the real-time game server that lets them play together.";
 export const SUPPORT_EMAIL = "infosiddjain@gmail.com";
 export const WEBSITE_URL = "https://portfolio-five-brown-mafnjkhjpf.vercel.app";
+// This site's own address (GAME_WEBSITE_URL in the app). Used for canonical URLs, the sitemap and social cards.
+export const SITE_URL = "https://snake-ladder-web-one.vercel.app";
+export const SITE_DESCRIPTION =
+  "Play Snakes & Ladders online with friends for free. Create a room, share the code and play live in your browser or the Snakepad app — no sign-up, no ads.";
 export const SOCIAL_LINKS = [
   { label: "GitHub", url: "https://github.com/infosiddjain" },
   { label: "LinkedIn", url: "https://www.linkedin.com/in/infosiddjain/" },

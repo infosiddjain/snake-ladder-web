@@ -9,7 +9,11 @@ import {
   WEBSITE_URL,
 } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Contact Us — Snakepad" };
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description: "Report a bug, suggest an idea or send feedback about Snakepad, the online Snakes & Ladders game.",
+  alternates: { canonical: "/contact" },
+};
 
 export default function ContactPage() {
   return (

@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { PRIVACY_EFFECTIVE_DATE, PRIVACY_SECTIONS } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Privacy Policy — Snakepad" };
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description:
+    "Snakepad collects no personal information: no accounts, no ads and no analytics. Read how the game handles your data.",
+  alternates: { canonical: "/privacy" },
+};
 
 export default function PrivacyPage() {
   return (

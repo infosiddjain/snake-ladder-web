@@ -3,7 +3,16 @@ import { Geist, Playfair_Display } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import AudioController from "@/components/AudioController";
-import { APP_NAME, APP_TAGLINE, DEVELOPER_NAME, WEBSITE_URL } from "@/lib/site";
+import {
+  APP_NAME,
+  APP_TAGLINE,
+  DEVELOPER_NAME,
+  DEVELOPER_ROLE,
+  SITE_DESCRIPTION,
+  SITE_URL,
+  SOCIAL_LINKS,
+  WEBSITE_URL,
+} from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,15 +25,73 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
 });
 
-const DESCRIPTION = `${APP_NAME}: play Snakes & Ladders live with friends. Share a room code and play together from the app or the web.`;
+const TITLE = `${APP_NAME} — Play ${APP_TAGLINE} Online with Friends`;
 
 export const metadata: Metadata = {
-  title: `${APP_NAME} — ${APP_TAGLINE}`,
-  description: DESCRIPTION,
+  metadataBase: new URL(SITE_URL),
+  title: { default: TITLE, template: `%s | ${APP_NAME}` },
+  description: SITE_DESCRIPTION,
   applicationName: APP_NAME,
+  keywords: [
+    "snakes and ladders",
+    "snakes and ladders online",
+    "play snakes and ladders with friends",
+    "multiplayer board game",
+    "online board game",
+    "snake and ladder game",
+    "saap seedhi",
+    APP_NAME,
+  ],
+  authors: [{ name: DEVELOPER_NAME, url: WEBSITE_URL }],
+  creator: DEVELOPER_NAME,
+  category: "games",
+  alternates: { canonical: "/" },
   appleWebApp: { title: APP_NAME },
-  openGraph: { siteName: APP_NAME, title: `${APP_NAME} — ${APP_TAGLINE}`, description: DESCRIPTION, type: "website" },
-  twitter: { card: "summary", title: `${APP_NAME} — ${APP_TAGLINE}`, description: DESCRIPTION },
+  openGraph: {
+    siteName: APP_NAME,
+    title: TITLE,
+    description: SITE_DESCRIPTION,
+    url: "/",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: { card: "summary_large_image", title: TITLE, description: SITE_DESCRIPTION },
+};
+
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: APP_NAME,
+      description: SITE_DESCRIPTION,
+      inLanguage: "en",
+    },
+    {
+      "@type": ["VideoGame", "WebApplication"],
+      name: `${APP_NAME} — ${APP_TAGLINE}`,
+      url: `${SITE_URL}/play`,
+      description: SITE_DESCRIPTION,
+      genre: ["Board game", "Family game"],
+      gamePlatform: ["Web browser", "Android", "iOS"],
+      applicationCategory: "GameApplication",
+      operatingSystem: "Any",
+      playMode: "MultiPlayer",
+      numberOfPlayers: { "@type": "QuantitativeValue", minValue: 2, maxValue: 4 },
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      author: { "@id": `${SITE_URL}/#developer` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#developer`,
+      name: DEVELOPER_NAME,
+      jobTitle: DEVELOPER_ROLE,
+      url: WEBSITE_URL,
+      sameAs: SOCIAL_LINKS.map((link) => link.url),
+    },
+  ],
 };
 
 export const viewport: Viewport = {
@@ -35,6 +102,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${geistSans.variable} ${playfair.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD).replace(/</g, "\\u003c") }}
+        />
         <header className="site-header">
           <Link href="/" className="brand">
             <Image src="/logo.svg" alt="" width={36} height={36} className="brand-logo" priority />

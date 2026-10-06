@@ -3,7 +3,11 @@ import Link from "next/link";
 import SettingsForm from "@/components/SettingsForm";
 import { APP_VERSION } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Settings — Snakepad" };
+export const metadata: Metadata = {
+  title: "Settings",
+  alternates: { canonical: "/settings" },
+  robots: { index: false, follow: true },
+};
 
 export default function SettingsPage() {
   return (
